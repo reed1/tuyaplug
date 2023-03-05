@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/public/normalize.css">
+  <link rel="stylesheet" href="/public/index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js"></script>
+  <script>
+    const nosleep = new NoSleep();
+    function set(state) {
+      nosleep.enable();
+      fetch(`/set/${state}`);
+    }
+  </script>
+</head>
+
+<body>
+  <div style="display: flex; height:100%; flex-direction: column;">
+    <div style="flex-grow: 1">
+      <button class="btn" onclick="set('off')">Off</button>
+    </div>
+    <div style="flex-grow: 1">
+      <button class="btn" onclick="set('on')">On</button>
+    </div>
+  </div>
+</body>
+
+</html>

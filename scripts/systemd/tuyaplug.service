@@ -1,0 +1,9 @@
+[Unit]
+Description=
+
+[Service]
+ExecStart=/usr/bin/bash start.sh
+WorkingDirectory=/home/reed/proj/tuyaplug
+
+[Install]
+WantedBy=default.target
