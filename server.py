@@ -4,7 +4,7 @@ load_dotenv()
 from sanic import Sanic, Request
 from sanic.response import text, json
 import os
-from plug import plug
+from plug import get_plug
 
 app = Sanic('TuyaPlug')
 app.static('/public', 'public')
@@ -17,6 +17,7 @@ async def handler(request: Request):
 @app.get('/set/<state>')
 async def set(request: Request, state: str):
     res = None
+    plug = get_plug()
     if state == 'on':
         res = plug.turn_on()
     elif state == 'off':
@@ -26,7 +27,8 @@ async def set(request: Request, state: str):
 def main():
     app.run(
         host=os.environ['WEB_HOST'],
-        port=int(os.environ['WEB_PORT'])
+        port=int(os.environ['WEB_PORT']),
+        dev=True
     )
 
 if __name__ == '__main__':
