@@ -4,23 +4,30 @@
 <head>
   <link rel="stylesheet" href="/public/normalize.css">
   <link rel="stylesheet" href="/public/index.css">
+  <link rel="stylesheet" href="/public/loader.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js"></script>
   <script>
     const nosleep = new NoSleep();
-    function set(state) {
+    async function set(state) {
       nosleep.enable();
-      fetch(`/set/${state}`);
+      await fetch(`/set/${state}`);
     }
   </script>
 </head>
 
 <body>
+  <div class="loader-container" id="loaderContainer" style="display: none">
+    <div class="loader">
+    </div>
+  </div>
   <div style="display: flex; height:100%; flex-direction: column;">
     <div style="flex-grow: 1">
-      <button class="btn" onclick="set('off')">Off</button>
+      <button class="btn" onclick="set('off')"
+              style="background: #d3fff5;">Off</button>
     </div>
     <div style="flex-grow: 1">
-      <button class="btn" onclick="set('on')">On</button>
+      <button class="btn" onclick="set('on')"
+              style="background: #f4f4ff;">On</button>
     </div>
   </div>
 </body>
